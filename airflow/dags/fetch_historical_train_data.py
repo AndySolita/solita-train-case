@@ -11,6 +11,8 @@ logging.basicConfig(level=logging.INFO)
 DAG_VERSION = 1
 BASE_URL= f'https://rata.digitraffic.fi/api/v1/trains/'
 
+START_DATE = date(2025, 1, 24)
+END_DATE = date(2025, 2, 8)  # 15 days
 
 
 def get_daily_train_trips(start_date, end_date):
@@ -73,7 +75,7 @@ def load_dataframe_to_bigquery_table(df):
 
 def main():
     
-    daily_train_trips = get_daily_train_trips()
+    daily_train_trips = get_daily_train_trips(START_DATE, END_DATE)
     load_dataframe_to_bigquery_table(daily_train_trips)
     
 
